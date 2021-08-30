@@ -74,6 +74,7 @@ const usuariosDelete = async (req, res = response) => {
 
     //este mantiene la integridad referencial 
     const usuario = await Usuario.findByIdAndUpdate(id, {estado:false});
+ 
 
 
 
