@@ -36,7 +36,7 @@ const ProductoSchema = Schema({
 
 })
 
-
+//nombre,precio,imagen,cuantia
 
 ProductoSchema.methods.toJSON = function(){
 

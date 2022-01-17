@@ -36,6 +36,7 @@ const UsuarioSchema = Schema({
 
 })
 
+//idcliente, nombre,telefono instagram,fecha, duracion,precio,tamaño,imagen, otros
 
 
 UsuarioSchema.methods.toJSON = function(){
