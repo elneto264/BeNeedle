@@ -3,7 +3,7 @@ const fs= require('fs')
 const { response } =require('express');
 const { subirArchivo } = require('../helpers');
 const { validarArchivoSubir } = require('../middlewares/validar-archivo');
-const {Usuario,Producto} =require('../models')
+const {Usuario,Producto, Cliente} =require('../models')
 const cloudinary = require('cloudinary').v2
 
 cloudinary.config(process.env.CLOUDINARY_URL)
@@ -45,6 +45,15 @@ const actualizarImg = async(req, res= response) =>{
         break;
         case 'productos':
             modelo = await Producto.findById(id)
+            if(!modelo){
+                return res.status(400).json({
+                    msg:`no existe un producto con el id ${id}`
+                })
+            }
+
+        break;
+        case 'clientes':
+            modelo = await Cliente.findById(id)
             if(!modelo){
                 return res.status(400).json({
                     msg:`no existe un producto con el id ${id}`
@@ -102,6 +111,15 @@ const mostrarImg = async (req, res = response) =>{
             }
 
         break;
+        case 'clientes':
+            modelo = await Cliente.findById(id)
+            if(!modelo){
+                return res.status(400).json({
+                    msg:`no existe un cliente con el id ${id}`
+                })
+            }
+
+        break;
     
         default:
             return res.status(500).json({msg:'Esto no esta validado'})
@@ -145,6 +163,15 @@ const actualizarImgCloundinary = async(req, res= response) =>{
             if(!modelo){
                 return res.status(400).json({
                     msg:`no existe un producto con el id ${id}`
+                })
+            }
+
+        break;
+        case 'clientes':
+            modelo = await Cliente.findById(id)
+            if(!modelo){
+                return res.status(400).json({
+                    msg:`no existe un cliente con el id ${id}`
                 })
             }
 

@@ -7,10 +7,10 @@ const Usuario = require('../models/usuario')
 const validarJWT = async (req = request , res = response, next) =>{
 
 
-    const token = req.header('x-token')
+    const token = req.header('token')
     if (!token){
         return res.status(401).json({
-            msg: 'falta el token'
+            msg: 'falta el token por enviar'
         })
     }
 
@@ -22,6 +22,7 @@ const validarJWT = async (req = request , res = response, next) =>{
         const usuario = await Usuario.findById( uid)
 
         if(!usuario){
+            
             return res.status(401).json({
                 msg: 'usuario no exite en DB'
             })
@@ -42,6 +43,7 @@ const validarJWT = async (req = request , res = response, next) =>{
 
     } catch(error){
         console.log(error)
+        
         res.status(401).json({
             msg:'Token no vale'
         })

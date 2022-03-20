@@ -1,5 +1,5 @@
 const Role = require('../models/role')
-const {Usuario, Categoria, Producto} = require('../models')
+const {Usuario, Categoria, Producto, Cliente} = require('../models')
 
 const esRoleValido = async (rol='') =>{
     const existeRol = await Role.findOne({ rol });
@@ -37,6 +37,13 @@ const existeProductoPorId = async (id='') =>{
     }
 }
 
+const existeClientePorId = async (id='') =>{
+    const existeCliente = await Cliente.findById(id)
+    if ( !existeCliente){
+        throw new Error(`El Id: ${id} no existe en DB`)
+    }
+}
+
 //validas colecciones permitidas
 
 const coleccionesPermitidas =(coleccion='', colecciones=[])=>{
@@ -56,5 +63,6 @@ module.exports = {
     existeUsuarioPorId,
     existeCategoriaPorId,
     existeProductoPorId,
-    coleccionesPermitidas
+    coleccionesPermitidas,
+    existeClientePorId
 }

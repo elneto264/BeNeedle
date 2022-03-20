@@ -14,14 +14,14 @@ router.post('/',validarArchivoSubir, loadFile)
 router.put('/:coleccion/:id', [
     validarArchivoSubir,
     check('id','el id debe de  ser de mongo').isMongoId(),
-    check('coleccion').custom(c=> coleccionesPermitidas(c,['usuarios','productos'])),
+    check('coleccion').custom(c=> coleccionesPermitidas(c,['usuarios','productos','clientes'])),
     validarCampos
 ], actualizarImgCloundinary )
 // actualizarImg  )
 
 router.get('/:coleccion/:id',[
     check('id','el id debe de  ser de mongo').isMongoId(),
-    check('coleccion').custom(c=> coleccionesPermitidas(c,['usuarios','productos'])),
+    check('coleccion').custom(c=> coleccionesPermitidas(c,['usuarios','productos','clientes'])),
     validarCampos
 ],mostrarImg)
 
